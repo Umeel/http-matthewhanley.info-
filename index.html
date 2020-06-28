@@ -1,0 +1,586 @@
+<html>
+ <head> 
+  <title>Kami Datang</title>
+  </head>
+  <script src="//helperblogger.ucoz.com/code/snow-effect3.js"></script>
+<body>
+</body>
+  <script language="JavaScript"> 
+// ini efek buat text di title
+ function tb5_makeArray(n){
+ this.length = n;
+ return this.length;
+}
+ 
+tb5_messages = new tb5_makeArray(4);
+tb5_messages[0] = "HALLO ADMIN"; // text yang pertama
+tb5_messages[1] = "UNGKAPAN ISI HATI KU"; // yang kedua
+tb5_messages[2] = "KAMI DATANG"; // yang ketiga
+tb5_messages[3] = "MuslimCyberSecurity"
+tb5_rptType = 'infinite';
+tb5_rptNbr = 20;
+tb5_speed = 40;
+tb5_delay = 2000;
+var tb5_counter=2;
+var tb5_currMsg=0;
+var tb5_stsmsg="";
+function tb5_shuffle(arr){
+var k;
+for (i=0; i<arr.length; i++){
+ k = Math.round(Math.random() * (arr.length - i - 1)) + i;
+ temp = arr[i];arr[i]=arr[k];arr[k]=temp;
+}
+return arr;
+}
+tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){
+ tb5_arr[i] = i;
+ tb5_sts[i] = "_";
+}
+tb5_arr = tb5_shuffle(tb5_arr);
+function tb5_init(n){
+var k;
+if (n == tb5_arr.length){
+ if (tb5_currMsg == tb5_messages.length-1){
+ if ((tb5_rptType == 'finite') && (tb5_counter==tb5_rptNbr)){
+ clearTimeout(tb5_timerID);
+ return;
+ }
+ tb5_counter++;
+ tb5_currMsg=0;
+ }
+ else{
+ tb5_currMsg++;
+ }
+ n=0;
+ tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+ tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+ for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){
+ tb5_arr[i] = i;
+ tb5_sts[i] = "_";
+ }
+ tb5_arr = tb5_shuffle(tb5_arr);
+ tb5_sp=tb5_delay;
+}
+else{
+ tb5_sp=tb5_speed;
+ k = tb5_arr[n];
+ tb5_sts[k] = tb5_messages[tb5_currMsg].charAt(k);
+ tb5_stsmsg = "";
+ for (var i=0; i<tb5_sts.length; i++)
+ tb5_stsmsg += tb5_sts[i];
+ document.title = tb5_stsmsg;
+ n++;
+ }
+ tb5_timerID = setTimeout("tb5_init("+n+")", tb5_sp);
+}
+function tb5_randomizetitle(){
+ tb5_init(0);
+}
+tb5_randomizetitle();
+
+
+// ANTI KLIK KANAN WKWKWKW
+var message="JAGAN COBA-COBA COPY SCRIPT EUY!!!";
+///////////////////////////////////
+function clickIE4(){
+if (event.button==2){
+alert(message);
+return false;
+}
+}
+function clickNS4(e){
+if (document.layers||document.getElementById&&!document.all){
+if (e.which==2||e.which==3){
+alert(message);
+return false;
+}
+}
+}
+if (document.layers){
+document.captureEvents(Event.MOUSEDOWN);
+document.onmousedown=clickNS4;
+}
+else if (document.all&&!document.getElementById){
+document.onmousedown=clickIE4;
+}
+document.oncontextmenu=new Function("alert(message);return false")
+// -->
+</script>
+
+
+  <center>
+  	 <SCRIPT> 
+var width=document.body.clientWidth;
+var height=document.body.clientHeight;
+ 
+function doClickText(who,type,step,timeOut) {
+document.getElementById(who).style.display="none";
+if(type==0) {
+reveal('revealDiv1',step,timeOut,0);
+reveal('revealDiv2',step,timeOut,1);}
+if(type==1) {
+reveal('revealDiv1',step,timeOut,2);
+reveal('revealDiv2',step,timeOut,3);}}
+function reveal(who,step,timeOut,type) {
+if(type==0)
+var where="top";
+if(type==1)
+var where="bottom";
+if(type==2)
+var where="left";
+if(type==3)
+var where="right";
+eval('var temp=document.getElementById(who).style.'+where);
+temp=parseInt(temp);
+if(type==0||type==1)
+var checkWith=height/2;
+if(type==2||type==3)
+var checkWith=width/2;
+if(-temp<checkWith) {
+
+temp-=step;
+
+eval('document.getElementById(who).style.'+where+'=temp;');
+
+setTimeout("reveal('"+who+"',"+step+",'"+timeOut+"',"+type+")", timeOut);}
+
+else {
+
+document.getElementById(who).style.display="none";
+
+document.body.scroll="yes";}}
+
+function initReveal(type,div1bg,div2bg,div1bw,div2bw,div1bc,div2bc,step,timeOut,click) {
+
+if(type==0) {
+
+var bWhere1="border-bottom";
+
+var bWhere2="border-top";
+
+var putZero1="top:0px; left:0px";
+
+var putZero2="bottom:0px; left:0px";
+
+document.write('<div id="revealDiv1" style="z-index:100; display:block; position:absolute; '+putZero1+'; background:'+div1bg+' ; width:'+(width)+'; height:'+(height/2)+'; '+bWhere1+':'+div1bc+' solid '+div1bw+'px"></div>');
+document.write('<div id="revealDiv2" style="z-index:100; display:block; position:absolute; '+putZero2+'; background:'+div2bg+' ; width:'+(width)+'; height:'+(height/2)+'; '+bWhere2+':'+div2bc+' solid '+div2bw+'px"></div>');
+if(!click) {
+reveal('revealDiv1',step,timeOut,0);
+reveal('revealDiv2',step,timeOut,1);}
+ 
+else {
+clickText(type,step,timeOut);}}
+ 
+if(type==1) {
+var bWhere1="border-right";
+var bWhere2="border-left";
+var putZero1="top:0px; left:0px";
+var putZero2="top:0px; right:0px";
+document.write('<div id="revealDiv1" style="z-index:100; display:block; position:absolute; '+putZero1+'; background:'+div1bg+' ; width:'+(width/2)+'; height:'+(height)+'; '+bWhere1+':'+div1bc+' solid '+div1bw+'px"></div>');
+document.write('<div id="revealDiv2" style="z-index:100; display:block; position:absolute; '+putZero2+'; background:'+div2bg+' ; width:'+(width/2)+'; height:'+(height)+'; '+bWhere2+':'+div2bc+' solid '+div2bw+'px"></div>');
+if(!click) {
+reveal('revealDiv1',step,timeOut,2);
+reveal('revealDiv2',step,timeOut,3);}
+else {
+clickText(type,step,timeOut);}}
+function clickText(type,step,timeOut) {
+document.write('<div id="clickText" style="z-index:101; display:block; position:absolute; top:'+(height/2-clickh/2-clickb)+'; left:'+(width/2-clickw/2-clickb)+'"><table style="border:'+clickc+' solid '+clickb+'px; background:'+clickbg+' ;width:'+clickw+'px; height:'+clickh+'; '+clickFont+'; cursor:hand; cursor:pointer" onClick="doClickText(\'clickText\','+type+','+step+','+timeOut+')"><tr><td align="middle">'+clickt+'</td></tr></table></div>');}}
+ 
+</SCRIPT>
+<SCRIPT> 
+var clickw=270;
+var clickh=50;
+var clickb=2;
+var clickc="black";
+var clickbg="black"; // Background color
+var clickt="=[[ <blink>OPEN</blink>  ]]="; // Text to display
+var clickFont="font-family:Tahoma,arial,helvetica; font-size:10pt; font-weight:bold; color:red"; // The font style of the text
+new initReveal(0,'black','black',1,1,'lime','lime',3,10,true);
+</SCRIPT>
+  <meta property="og:title" content="Was Here"> 
+  <meta property="og:description" content="~ MCS TEAM ~"> 
+  <meta property="og:author" content="EN_Scrypt WASS Here"> 
+  <meta charset="UTF-8"> 
+  <style>body{background:#000;
+ cursor: url(http://cur.cursors-4u.net/cursors/cur-9/cur862.ani),
+ url(http://cur.cursors-4u.net/cursors/cur-9/cur862.png),
+ progress !important; } </style> 
+ </head> 
+ <body oncontextmenu="return false" onkeydown="return false" onmousedown="return false">
+ 	
+	<br>
+		<br>
+	<center>
+	
+	<font face="courier" size="5"><strong><script language="JavaScript1.2">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var message="Muslim Cyber Security"
+	
+	
+	
+	var neonbasecolor="red"
+	
+	
+	
+	var neontextcolor="white"
+	
+	
+	
+	var flashspeed=500
+	
+	
+	
+	
+	
+	
+	
+	var n=0
+	
+	
+	
+	if (document.all||document.getElementById){
+	
+	
+	
+	document.write('<font color="'+neonbasecolor+'">')
+	
+	
+	
+	for (m=0;m<message.length;m++)
+	
+	
+	
+	document.write('<span id="neonlight'+m+'">'+message.charAt(m)+'</span>')
+	
+	
+	
+	document.write('</font>')
+	
+	
+	
+	}
+	
+	
+	
+	else
+	
+	
+	
+	document.write(message)
+	
+	
+	
+	
+	
+	
+	
+	function crossref(number){
+	
+	
+	
+	var crossobj=document.all? eval("document.all.neonlight"+number) : document.getElementById
+	
+	("neonlight"+number)
+	
+	
+	
+	return crossobj
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	function neon(){
+	
+	
+	
+	
+	
+	
+	
+	if (n==0){
+	
+	
+	
+	for (m=0;m<message.length;m++)
+	
+	
+	
+	//eval("document.all.neonlight"+m).style.color=neonbasecolor
+	
+	
+	
+	crossref(m).style.color=neonbasecolor
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	crossref(n).style.color=neontextcolor
+	
+	
+	
+	
+	
+	
+	
+	if (n<message.length-1)
+	
+	
+	
+	n++
+	
+	
+	
+	else{
+	
+	
+	
+	n=0
+	
+	
+	
+	clearInterval(flashing)
+	
+	
+	
+	setTimeout("beginneon()",1)
+	
+	
+	
+	return
+	
+	
+	
+	}
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	function beginneon(){
+	
+	
+	
+	if (document.all||document.getElementById)
+	
+	
+	
+	flashing=setInterval("neon()",flashspeed)
+	
+	
+	
+	}
+	
+	
+	
+	beginneon()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</script></strong></font></center>
+
+ 	
+ 
+  
+  	<br>
+  <center>
+   <img style="width:340px;" src="http://storage.googleapis.com/s.mysch.id/picture/62654241images.jpeg"> 
+   <br>
+   <br> 
+   
+   <head>
+   
+   
+   
+<h1><font face="Cooper Black"><center><SCRIPT>
+
+farbbibliothek = new Array();
+
+farbbibliothek[0] = new Array("#FF0000","#FF1100","#FF2200","#FF3300","#FF4400","#FF5500","#FF6600","#FF7700","#FF8800","#FF9900","#FFaa00","#FFbb00","#FFcc00","#FFdd00","#FFee00","#FFff00","#FFee00","#FFdd00","#FFcc00","#FFbb00","#FFaa00","#FF9900","#FF8800","#FF7700","#FF6600","#FF5500","#FF4400","#FF3300","#FF2200","#FF1100");
+
+farbbibliothek[1] = new Array("#FF0000","#FFFFFF","#FFFFFF","#FF0000");
+
+farbbibliothek[2] = new Array("#FFFFFF","#FF0000","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF");
+
+farbbibliothek[3] = new Array("#FF0000","#FF4000","#FF8000","#FFC000","#FFFF00","#C0FF00","#80FF00","#40FF00","#00FF00","#00FF40","#00FF80","#00FFC0","#00FFFF","#00C0FF","#0080FF","#0040FF","#0000FF","#4000FF","#8000FF","#C000FF","#FF00FF","#FF00C0","#FF0080","#FF0040");
+
+farbbibliothek[4] = new Array("#FF0000","#EE0000","#DD0000","#CC0000","#BB0000","#AA0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","#000000","#110000","#220000","#330000","#440000","#550000","#660000","#770000","#880000","#990000","#AA0000","#BB0000","#CC0000","#DD0000","#EE0000");
+
+farbbibliothek[5] = new Array("#FF0000","#FF0000","#FF0000","#FFFFFF","#FFFFFF","#FFFFFF");
+
+farbbibliothek[6] = new Array("#FF0000","#FDF5E6");
+
+farben = farbbibliothek[4];
+
+function farbschrift()
+
+{
+
+for(var i=0 ; i<Buchstabe.length; i++)
+
+{
+
+document.all["a"+i].style.color=farben[i];
+
+}
+
+farbverlauf();
+
+}
+
+function string2array(text)
+
+{
+
+Buchstabe = new Array();
+
+while(farben.length<text.length)
+
+{
+
+farben = farben.concat(farben);
+
+}
+
+k=0;
+
+while(k<=text.length)
+
+{
+
+Buchstabe[k] = text.charAt(k);
+
+k++;
+
+}
+
+}
+
+function divserzeugen()
+
+{
+
+for(var i=0 ; i<Buchstabe.length; i++)
+
+{
+
+document.write("<span id='a"+i+"' class='a"+i+"'>"+Buchstabe[i] + "</span>");
+
+}
+
+farbschrift();
+
+}
+
+var a=1;
+
+function farbverlauf()
+
+{
+
+for(var i=0 ; i<farben.length; i++)
+
+{
+
+farben[i-1]=farben[i];
+
+}
+
+farben[farben.length-1]=farben[-1];
+
+setTimeout("farbschrift()",30);
+
+}
+
+//
+
+var farbsatz=1;
+
+function farbtauscher()
+
+{
+
+farben = farbbibliothek[farbsatz];
+
+while(farben.length<text.length)
+
+{
+
+farben = farben.concat(farben);
+
+}
+
+farbsatz=Math.floor(Math.random()*(farbbibliothek.length-0.0001));
+
+}
+
+setInterval("farbtauscher()",5000);
+
+text ="[â˜…] EN_Scrypt [â˜…]";//h
+
+string2array(text);
+
+divserzeugen();
+
+//document.write(text);
+
+</SCRIPT></center></h1></font>
+
+
+   <font color="red" face="Joti One" size="7">Muslim Cy<font color="white">ber Security</font> <br> <font color="white" face="courier new">Bangkitlah<font color="white"> Garuda Merah Putihku <font color="white"> Kembalikan garuda kami yang sirna</font> <br><font color="white">[ 
+       <marquee behavior="alternate" scrollamount="50" width="250" style="width: 250px;"> 
+        <font size="4" color="red">________<font size="4" color="yellow">________<font size="4" color="#1CFF00">________<font size="4" color="#00A7FF">________</font></font></font></font> 
+       </marquee>]<br><br></font> <font color="#7CFC00" face="courier new" size="5">Kami Rakyat punya hak menuntut keadilan
+
+Namun yang kami dapatkan<br> Gas air mata <br> dan peluru yang tajam</font><br> <font color="white" face="courier new" size="5"> KAMI BERHAK ATAS INDONESIA<br> <font color="red" face="courier new" size="5">garudmerahputih69@gmail.com<br>
+       	 <a href="  " target="_blank"></a>
+<p class="style14" align="center"> <font color="white" face="courier new" size="7"> <br>My Friends </font>
+        <marquee  scrolldelay="20" scrollamount="5" direction="left" behavior="scroll" width="80%" style="width: 80%;"> 
+         <font color="#00FFFF" face="Tahoma" size="5">MUJAHDIDIN 313 >< ASWAJA007 >< AngelAnony >< 1R.4NDRO1D >< B3T@W1 >< wPx313 >< Mr.Bl4cSt4R >< Mr.Cut313 >< ./H3R4L0N3 ><  Ar-B@73R3ck</font>
+        </marquee><br></p><p align="center"> 
+        <canvas id="canvas"></canvas> <script>
+var Stats=function(){var e=Date.now(),t=e,i=0,n=1/0,r=0,s=0,o=1/0,a=0,l=0,h=0,c=document.createElement("div");c.id="stats",c.addEventListener("mousedown",function(e){e.preventDefault(),v(++h%2)},!1),c.style.cssText="width:80px;opacity:0.9;cursor:pointer";var u=document.createElement("div");u.id="fps",u.style.cssText="padding:0 0 3px 3px;text-align:left;background-color:#002",c.appendChild(u);var d=document.createElement("div");d.id="fpsText",d.style.cssText="color:#0ff;font-family:Comic Sans MS;font-size:9px;font-weight:bold;line-height:15px",d.innerHTML="FPS",u.appendChild(d);var p=document.createElement("div");for(p.id="fpsGraph",p.style.cssText="position:relative;width:74px;height:30px;background-color:#0ff",u.appendChild(p);74>p.children.length;){var f=document.createElement("span");f.style.cssText="width:1px;height:30px;float:left;background-color:#113",p.appendChild(f)}var m=document.createElement("div");m.id="ms",m.style.cssText="padding:0 0 3px 3px;text-align:left;background-color:#020;display:none",c.appendChild(m);var g=document.createElement("div");g.id="msText",g.style.cssText="color:#0f0;font-family:Comic Sans MS;font-size:9px;font-weight:bold;line-height:15px",g.innerHTML="MS",m.appendChild(g);var y=document.createElement("div");for(y.id="msGraph",y.style.cssText="position:relative;width:74px;height:30px;background-color:#0f0",m.appendChild(y);74>y.children.length;){var f=document.createElement("span");f.style.cssText="width:1px;height:30px;float:left;background-color:#131",y.appendChild(f)}var v=function(e){switch(h=e){case 0:u.style.display="block",m.style.display="none";break;case 1:u.style.display="none",m.style.display="block"}},b=function(e,t){var</script></p></font></font></font></font>
+  </center>
+ </body>
+</html>
+
+<!--<iframe width="0" height="0" src="https://www.youtube.com/embed/1-xGerv5FOk?autoplay=1" frameborder="0" allowfullscreen=""></iframe>
